@@ -1,0 +1,7 @@
+{
+  "name": "konsultasi-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
