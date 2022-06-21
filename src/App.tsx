@@ -1,6 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import axios from 'axios';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -20,24 +21,65 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/sweetalert2.css';
 import './index.css';
+import "swiper/css/bundle";
 
 /* Page */
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import { useAppSelector } from './redux/hook';
+import SideMenu from './components/SideMenu';
+import User from './pages/User';
+import Pakar from './pages/Pakar';
+import Konsultasi from './pages/Konsultasi';
+import Register from './pages/Register';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.put['Content-Type'] = 'application/json';
+
+axios.interceptors.request.use(async (config) => {
+  let accessToken = localStorage.getItem('token');
+  if (accessToken) {
+    config.headers = Object.assign({ Authorization: `Bearer ${accessToken}` }, config.headers);
+  }
+  return config;
+}, (err) => {
+  console.log(err);
+});
+
+const App: React.FC = () => {
+
+  const user = useAppSelector((state) => state.user)
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonSplitPane contentId='side-menu-content' when={user.id === "" ? false : user.role === 'Super User' || user.role === 'Admin' ? "md" : false}>
+          <SideMenu />
+          <IonRouterOutlet id='side-menu-content'>
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/konsultasi" component={Konsultasi} />
+            <Route exact path="/testminatbakat" component={Konsultasi} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/admin/home" component={Dashboard} />
+            <Route exact path="/admin/user" component={User} />
+            <Route exact path="/admin/pakar" component={Pakar} />
+            <Route exact path="/admin">
+              <Redirect to="/admin/home" />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+          </IonRouterOutlet>
+        </IonSplitPane>
+      </IonReactRouter>
+    </IonApp>
+  )
+};
 
 export default App;
