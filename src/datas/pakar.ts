@@ -3,6 +3,8 @@ export interface PakarState {
     name: string;
     title: string;
     description: string;
+    email: string;
     createdAt: string;
     updatedAt: string;
+    UserId: string;
 }

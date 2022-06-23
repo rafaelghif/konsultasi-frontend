@@ -10,7 +10,7 @@ import { Pagination } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import ChatFabBox from "../components/ChatBox";
+import ChatFab from "../components/ChatFab";
 
 const Konsultasi: React.FC = () => {
 
@@ -56,7 +56,7 @@ const Konsultasi: React.FC = () => {
                         }
                     </Swiper>
                 </div>
-                <ChatFabBox />
+                <ChatFab />
             </IonContent>
         </IonPage>
     )

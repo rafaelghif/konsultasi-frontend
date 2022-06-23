@@ -4,6 +4,7 @@ export interface UserState {
     password: string;
     name: string;
     role: string;
+    socketId: string;
     createdAt: string;
     updatedAt: string;
 }

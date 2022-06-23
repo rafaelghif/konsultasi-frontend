@@ -24,7 +24,7 @@ const HeaderUser: React.FC = () => {
                     <Link to={"/konsultasi"} className="px-3 py-2 rounded-sm hover:bg-slate-200 hover:border-b-2 hover:border-b-slate-500">Konsultasi</Link>
                     <Link to={"/testminatbakat"} className="px-3 py-2 rounded-sm hover:bg-slate-200 hover:border-b-2 hover:border-b-slate-500">Tes Minat Bakat</Link>
                 </div>
-                <div className="flex items-center p-2 space-x-2">
+                <div className="flex items-center space-x-2">
                     {user.id !== "" ? (
                         <div className="flex items-center space-x-2">
                             <IonImg src={profilePicture} alt="Profile Pictue" className="w-10 h-auto" />

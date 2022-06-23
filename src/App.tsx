@@ -2,6 +2,7 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import axios from 'axios';
+import socket from './socket/socket';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -50,6 +51,8 @@ axios.interceptors.request.use(async (config) => {
 }, (err) => {
   console.log(err);
 });
+
+socket.connect();
 
 const App: React.FC = () => {
 

@@ -7,8 +7,9 @@ const initialState: UserState = {
     password: '',
     name: '',
     role: '',
+    socketId: '',
     createdAt: '',
-    updatedAt: ''
+    updatedAt: '',
 }
 
 const userSlice = createSlice({

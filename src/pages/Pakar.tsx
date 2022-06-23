@@ -14,6 +14,7 @@ const Pakar: React.FC = () => {
     const [name, setName] = useState<string>('');
     const [title, setTitle] = useState<string>('');
     const [description, setDescription] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
 
     const [isOpenModalAdd, setIsOpenModalAdd] = useState<boolean>(false);
 
@@ -51,6 +52,13 @@ const Pakar: React.FC = () => {
             wrap: true
         },
         {
+            name: 'Email',
+            selector: row => row.email,
+            sortable: true,
+            grow: 3,
+            wrap: true
+        },
+        {
             name: 'Created At',
             selector: row => row.createdAt
         },
@@ -70,7 +78,8 @@ const Pakar: React.FC = () => {
             const formData = {
                 name: name,
                 title: title,
-                description: description
+                description: description,
+                email: email,
             }
 
             const response = await axios.post(`${process.env.REACT_APP_HOST}/api/pakar`, formData);
@@ -135,6 +144,10 @@ const Pakar: React.FC = () => {
                             <IonItem>
                                 <IonLabel position="stacked">Description</IonLabel>
                                 <IonTextarea value={description} onIonChange={e => setDescription(e.detail.value!)} required></IonTextarea>
+                            </IonItem>
+                            <IonItem>
+                                <IonLabel position="stacked">Email</IonLabel>
+                                <IonInput type="email" value={email} onIonChange={e => setEmail(e.detail.value!)} required />
                             </IonItem>
                             <IonButton type="submit" expand="block">Submit</IonButton>
                         </form>
