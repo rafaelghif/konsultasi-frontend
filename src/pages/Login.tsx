@@ -39,7 +39,7 @@ const Login: React.FC = () => {
                 dispatch(setUser(response.data.response));
                 successMessage('Success Login');
                 if (response.data.role === 'Super User' || response.data.role === 'Admin') {
-                    history.push('/admin');
+                    history.push('/admin/home');
                 } else {
                     history.push('/home');
                 }

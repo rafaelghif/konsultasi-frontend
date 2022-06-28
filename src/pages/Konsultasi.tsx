@@ -11,8 +11,12 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import ChatFab from "../components/ChatFab";
+import { useAppSelector } from "../redux/hook";
+import ChatFabPakar from "../components/ChatFabPakar";
 
 const Konsultasi: React.FC = () => {
+
+    const user = useAppSelector((state) => state.user);
 
     const [pakarList, setPakarList] = useState<PakarState[]>([]);
 
@@ -56,7 +60,7 @@ const Konsultasi: React.FC = () => {
                         }
                     </Swiper>
                 </div>
-                <ChatFab />
+                {user.role !== 'Pakar' ? <ChatFab /> : <ChatFabPakar />}
             </IonContent>
         </IonPage>
     )

@@ -1,10 +1,15 @@
 import { IonImg } from "@ionic/react";
-import { ChatDetailState } from "../datas/chatDetail";
 import { useAppSelector } from "../redux/hook";
 import profilePicture from '../assets/images/profile.png';
 
+interface PrivateMessageState {
+    from: string;
+    to: string;
+    message: string;
+}
+
 interface ChatMessageState {
-    data: ChatDetailState
+    data: PrivateMessageState
 }
 
 const ChatMessage: React.FC<ChatMessageState> = ({ data }) => {

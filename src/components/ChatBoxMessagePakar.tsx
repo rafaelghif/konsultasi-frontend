@@ -1,20 +1,18 @@
-import { PakarState } from "../datas/pakar"
 import { IonItem, IonTextarea, IonButton } from "@ionic/react";
-import { errorMessage } from "../services/toastService";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { useAppSelector } from "../redux/hook";
-import { ChatMessageState } from "../datas/chat";
-import ChatMessage from "./ChatMessage";
 import { io, Socket } from "socket.io-client";
+import { ChatMessageState } from "../datas/chat";
 import { ChatDetailState } from "../datas/chatDetail";
+import { useAppSelector } from "../redux/hook";
+import { errorMessage } from "../services/toastService";
+import ChatMessage from "./ChatMessage";
 
-interface ChatBoxState {
-    data: PakarState;
+interface ChatBoxMessagePakarState {
+    selectedUser: string
 }
 
-const ChatBoxMessage: React.FC<ChatBoxState> = ({ data }) => {
-
+const ChatBoxMessagePakar: React.FC<ChatBoxMessagePakarState> = ({ selectedUser }) => {
     const user = useAppSelector((state) => state.user);
     const [socket, setSocket] = useState<Socket | null>(null);
 
@@ -25,7 +23,7 @@ const ChatBoxMessage: React.FC<ChatBoxState> = ({ data }) => {
 
     const getChats = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_HOST}/api/chat/getChat/userId/${user.id}/userIdPakar/${data.UserId}`);
+            const response = await axios.get(`${process.env.REACT_APP_HOST}/api/chat/getChat/userId/${selectedUser}/userIdPakar/${user.id}`);
             if (response.status === 200) {
                 setChatMessage(response.data.ChatDetails.map((data: ChatDetailState) => { return { from: data.from, to: data.to, message: data.message } }));
             }
@@ -35,9 +33,9 @@ const ChatBoxMessage: React.FC<ChatBoxState> = ({ data }) => {
     }
 
     useEffect(() => {
-        getChats();
+        getChats()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [selectedUser])
 
     useEffect(() => {
         if (messageBoxRef.current) {
@@ -66,12 +64,12 @@ const ChatBoxMessage: React.FC<ChatBoxState> = ({ data }) => {
                 setChatMessage(old => [...old, data]);
             });
         }
-    }, [socket, user.id, user.role]);
+    }, [socket, user.id, user.role])
 
-    const handleClickSend = () => {
+    const handleBtnSend = () => {
         const formData = {
             from: user.id,
-            to: data.UserId,
+            to: selectedUser,
             message: message
         }
 
@@ -83,7 +81,7 @@ const ChatBoxMessage: React.FC<ChatBoxState> = ({ data }) => {
 
     return (
         <>
-            <div ref={messageBoxRef} className="h-[78%] grid-cols-1 overflow-auto p-3 space-y-3 scroll-smooth">
+            <div ref={messageBoxRef} className="h-[26em] grid-cols-1 overflow-auto p-3 space-y-3 scroll-smooth ring-1 ring-blue-300 rounded-md">
                 {chatMessage.map((data, index) => (
                     <ChatMessage key={`chat-message-${index}`} data={{ from: data.from, to: data.to, message: data.message }} />
                 ))}
@@ -92,10 +90,10 @@ const ChatBoxMessage: React.FC<ChatBoxState> = ({ data }) => {
                 <IonItem className="px-3 py-2 grow">
                     <IonTextarea value={message} onIonChange={e => setMessage(e.detail.value!)} />
                 </IonItem>
-                <IonButton className="mr-4" onClick={() => handleClickSend()}>Send</IonButton>
+                <IonButton className="mr-4" onClick={() => handleBtnSend()}>Send</IonButton>
             </div>
         </>
     )
 }
 
-export default ChatBoxMessage;
+export default ChatBoxMessagePakar;

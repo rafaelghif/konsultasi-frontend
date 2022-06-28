@@ -8,3 +8,14 @@ export interface UserState {
     createdAt: string;
     updatedAt: string;
 }
+
+export const initialUserState = {
+    id: '',
+    name: '',
+    email: '',
+    password: '',
+    createdAt: '',
+    role: '',
+    socketId: '',
+    updatedAt: ''
+}

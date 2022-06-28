@@ -4,7 +4,7 @@ import ChatFabPakar from "../components/ChatFabPakar";
 import HeaderUser from "../components/HeaderUser";
 import { useAppSelector } from "../redux/hook";
 
-const Home: React.FC = () => {
+const TestMinatBakat: React.FC = () => {
     const user = useAppSelector((state) => state.user);
     return (
         <IonPage>
@@ -16,4 +16,4 @@ const Home: React.FC = () => {
     )
 }
 
-export default Home;
+export default TestMinatBakat;

@@ -36,6 +36,7 @@ import User from './pages/User';
 import Pakar from './pages/Pakar';
 import Konsultasi from './pages/Konsultasi';
 import Register from './pages/Register';
+import TestMinatBakat from './pages/TestMinatBakat';
 
 setupIonicReact();
 
@@ -66,7 +67,7 @@ const App: React.FC = () => {
           <IonRouterOutlet id='side-menu-content'>
             <Route exact path="/home" component={Home} />
             <Route exact path="/konsultasi" component={Konsultasi} />
-            <Route exact path="/testminatbakat" component={Konsultasi} />
+            <Route exact path="/testminatbakat" component={TestMinatBakat} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/admin/home" component={Dashboard} />
