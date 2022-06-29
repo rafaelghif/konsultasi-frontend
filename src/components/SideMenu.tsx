@@ -52,6 +52,12 @@ const SideMenu: React.FC = () => {
                                     </IonItem>
                                 </IonList>
                                 <IonList slot="content" className='bg-[#343a40]'>
+                                    <IonItem routerLink='/admin/question' className='menu-item text-slate-300' lines='full'>
+                                        <IonIcon icon={ellipseOutline} slot="start" className='text-slate-300' />
+                                        <IonLabel>Question</IonLabel>
+                                    </IonItem>
+                                </IonList>
+                                <IonList slot="content" className='bg-[#343a40]'>
                                     <IonItem routerLink='/admin/user' className='menu-item text-slate-300' lines='full'>
                                         <IonIcon icon={ellipseOutline} slot="start" className='text-slate-300' />
                                         <IonLabel>User</IonLabel>

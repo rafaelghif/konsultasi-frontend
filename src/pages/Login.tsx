@@ -38,7 +38,7 @@ const Login: React.FC = () => {
                 localStorage.setItem('token', response.data.token);
                 dispatch(setUser(response.data.response));
                 successMessage('Success Login');
-                if (response.data.role === 'Super User' || response.data.role === 'Admin') {
+                if (response.data.response.role === 'Super User' || response.data.response.role === 'Admin') {
                     history.push('/admin/home');
                 } else {
                     history.push('/home');

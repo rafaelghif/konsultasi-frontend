@@ -62,14 +62,14 @@ const Pakar: React.FC = () => {
             name: 'Created At',
             selector: row => row.createdAt
         },
-        {
-            name: 'Action',
-            cell: (row) => (<>
-                <IonButton color={"warning"}>Edit</IonButton>
-                <IonButton color={"danger"}>Delete</IonButton>
-            </>),
-            center: true
-        }
+        // {
+        //     name: 'Action',
+        //     cell: (row) => (<>
+        //         <IonButton color={"warning"}>Edit</IonButton>
+        //         <IonButton color={"danger"}>Delete</IonButton>
+        //     </>),
+        //     center: true
+        // }
     ];
 
     const handleSubmitFormAddPakar = async (e: React.FormEvent) => {
@@ -115,11 +115,6 @@ const Pakar: React.FC = () => {
                         </IonCol>
                     </IonRow>
                 </IonGrid>
-                <IonFab vertical="bottom" horizontal="end">
-                    <IonFabButton onClick={() => setIsOpenModalAdd(true)}>
-                        <IonIcon icon={addOutline} />
-                    </IonFabButton>
-                </IonFab>
                 <IonModal isOpen={isOpenModalAdd} onDidDismiss={() => setIsOpenModalAdd(false)}>
                     <IonHeader>
                         <IonToolbar>
@@ -154,7 +149,11 @@ const Pakar: React.FC = () => {
                     </IonContent>
                 </IonModal>
             </IonContent>
-
+            <IonFab vertical="bottom" horizontal="end">
+                <IonFabButton onClick={() => setIsOpenModalAdd(true)}>
+                    <IonIcon icon={addOutline} />
+                </IonFabButton>
+            </IonFab>
         </IonPage>
     )
 }

@@ -54,14 +54,14 @@ const User: React.FC = () => {
             name: 'Created At',
             selector: row => row.createdAt
         },
-        {
-            name: 'Action',
-            cell: (row) => (<>
-                <IonButton color={"warning"}>Edit</IonButton>
-                <IonButton color={"danger"}>Delete</IonButton>
-            </>),
-            center: true
-        }
+        // {
+        //     name: 'Action',
+        //     cell: (row) => (<>
+        //         <IonButton color={"warning"}>Edit</IonButton>
+        //         <IonButton color={"danger"}>Delete</IonButton>
+        //     </>),
+        //     center: true
+        // }
     ];
 
     const handleSubmitFormAddUser = async (e: React.FormEvent) => {

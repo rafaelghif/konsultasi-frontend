@@ -37,6 +37,7 @@ import Pakar from './pages/Pakar';
 import Konsultasi from './pages/Konsultasi';
 import Register from './pages/Register';
 import TestMinatBakat from './pages/TestMinatBakat';
+import Question from './pages/Question';
 
 setupIonicReact();
 
@@ -73,6 +74,7 @@ const App: React.FC = () => {
             <Route exact path="/admin/home" component={Dashboard} />
             <Route exact path="/admin/user" component={User} />
             <Route exact path="/admin/pakar" component={Pakar} />
+            <Route exact path="/admin/question" component={Question} />
             <Route exact path="/admin">
               <Redirect to="/admin/home" />
             </Route>
